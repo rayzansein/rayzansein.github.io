@@ -1,0 +1,9 @@
+title: Ryan Sujana Husein
+url: https://rayzansein.com
+permalink: /blog/:year/:month/:day/:title/
+plugins:
+  - jekyll-feed
+feed:
+  path: blog/feed.xml
+exclude:
+  - README.md
