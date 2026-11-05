@@ -1,8 +1,11 @@
 title: Ryan Sujana Husein
 url: https://rayzansein.com
 permalink: /blog/:year/:month/:day/:title/
+paginate: 2
+paginate_path: /blog/page:num/
 plugins:
   - jekyll-feed
+  - jekyll-paginate
 feed:
   path: blog/feed.xml
 exclude:
