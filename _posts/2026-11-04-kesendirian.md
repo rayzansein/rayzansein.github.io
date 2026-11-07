@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Kesendirian
 ---
 Hidup dalam kesendirian memang membosankan.

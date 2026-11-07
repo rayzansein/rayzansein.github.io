@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article>
+  <h2>{{ page.title }}</h2>
+  <p class="byline">By <a href="/">{{ site.title }}</a></p>
+  {{ content }}
+  <div class="navigation">
+    <p class="prev">{% if page.previous %}<span>Previous post:</span><br><a href="{{ page.previous.url }}">{{ page.previous.title }}</a>{% endif %}</p>
+    <p class="next">{% if page.next %}<span>Next post:</span><br><a href="{{ page.next.url }}">{{ page.next.title }}</a>{% endif %}</p>
+  </div>
+  <p class="all-posts"><a href="/blog/">&larr; back to blog</a></p>
+</article>

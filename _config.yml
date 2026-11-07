@@ -3,6 +3,12 @@ url: https://rayzansein.com
 permalink: /blog/:year/:month/:day/:title/
 paginate: 2
 paginate_path: /blog/page:num/
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
 plugins:
   - jekyll-feed
   - jekyll-paginate

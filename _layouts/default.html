@@ -5,31 +5,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
 <link rel="icon" href="/favicon.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap">
 {% feed_meta %}
 <style>
-  body { margin: 0 auto; max-width: 680px; padding: 32px 16px; font-family: "Plus Jakarta Sans", system-ui, sans-serif; line-height: 1.7; background: #fff; color: #444; }
-  header { margin-bottom: 40px; }
-  header a { font-weight: 700; color: #333; text-decoration: none; }
-  h1, h2 { letter-spacing: -0.02em; color: #333; }
-  a { color: #333; }
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { margin: 0; font: 300 18px/1.5 "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fff; color: #333; }
+  a { color: #333; text-decoration: none; border-bottom: 2px solid #e2e2e2; transition: border-color .3s, color .6s; }
+  a:hover { border-color: #666; }
+  header { border-bottom: 1px solid #f5f5f5; }
+  header .wrap { box-sizing: border-box; max-width: 70em; min-height: 100px; margin: 0 auto; padding: 15px clamp(24px, 4vw, 45px) 10px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+  header h1 { margin: 0; font-size: 17px; font-weight: 500; letter-spacing: .5px; white-space: nowrap; }
+  header a { border: 0; transition: color .7s; }
+  header h1 a:hover { color: #aaa; }
+  header nav { display: flex; gap: 20px; font-size: 17px; letter-spacing: .5px; }
+  header nav a { color: #848484; }
+  header nav a:hover { color: #333; }
+  main { max-width: 600px; margin: 0 auto 100px; padding: 0 20px; }
+  h2, h3, h4 { font-weight: 300; text-align: center; line-height: 1.25; }
+  h2 { font-size: 2em; margin: 2.5em 0 1.25em; }
+  h2 a { border: 0; transition: color .8s; }
+  h2 a:hover { color: #b0b0b0; }
+  h3 { font-size: 1.5em; line-height: 1.35; margin: 1.5em 0 1em; }
+  p { margin: 0 0 1em; }
+  strong, b { font-weight: 400; }
   img { max-width: 100%; }
-  pre { overflow-x: auto; background: #f5f5f5; padding: 12px; }
-  time { color: #777; font-size: 0.9rem; }
-  article + article { margin-top: 48px; padding-top: 32px; border-top: 1px solid #eee; }
-  h2 a { text-decoration: none; }
-  a.back { display: inline-block; margin-top: 40px; padding: 8px 24px; border: 2px solid #777; border-radius: 999px; color: #555; font-weight: 700; text-decoration: none; }
-  nav.pager { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 40px; }
-  nav.pager a.back { margin-top: 0; }
-  a.back:hover, a.back:focus-visible { border-color: #333; background: #333; color: #fff; }
+  ul, ol { padding-left: 25px; margin: 0 0 1.7em; }
+  blockquote { margin: 20px 0 30px; padding: 15px 0 3px 18px; border-left: 2px solid #ddd; font-style: italic; color: #555; }
+  .byline { margin: 0 0 3.5em; text-align: center; font-size: 14px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: #aaa; }
+  .byline a { color: #aaa; border: 0; }
+  .byline a:hover { color: #333; }
+  article + article { margin-top: 3em; border-top: 1px solid #f5f5f5; }
+  .navigation { display: flex; margin: 3.5em 0 3em; }
+  .navigation p { width: 50%; margin: 0; font-size: .9em; font-weight: 400; color: #aaa; }
+  .navigation .prev { padding-right: 25px; }
+  .navigation .next { padding-left: 25px; text-align: right; }
+  .all-posts { margin: 2.5em 0 0; text-align: center; font-size: 1.25em; }
+  .all-posts a { color: #aaa; border: 0; }
+  .all-posts a:hover { color: #333; }
+  .month { margin: 2em 0 1em; font-size: 1em; font-weight: 400; }
+  .day-title { display: flex; padding: 10px 0; border-bottom: 1px solid #eee; }
+  .day { flex: none; padding-right: 60px; font-weight: 400; }
+  footer { padding: 2.5em 20px; background: #f5f5f5; text-align: center; }
+  footer ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 40px; margin: 0; padding: 0; list-style: none; }
+  footer a { border: 0; color: #777; text-transform: lowercase; }
+  footer a:hover { color: #b0b0b0; }
+  @media (max-width: 600px) {
+    header .wrap { grid-template-columns: 1fr; justify-items: center; gap: 8px; min-height: 0; padding: 20px; }
+    h2 { margin: 2em 0 1em; }
+    .day { padding-right: 30px; }
+  }
 </style>
 </head>
 <body>
-  <header><a href="/">{{ site.title }}</a> / <a href="/blog/">Blog</a></header>
+  <header>
+    <div class="wrap">
+      <h1><a href="/">{{ site.title | downcase }}</a></h1>
+      <nav><a href="/blog/">blog</a><a href="/blog/archives/">archives</a></nav>
+    </div>
+  </header>
   <main>
-    {% if page.date %}<h1>{{ page.title }}</h1><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>{% endif %}
     {{ content }}
-    {% if page.date %}<a class="back" href="/blog/">&larr; Back</a>{% endif %}
   </main>
+  <footer>
+    <ul>
+      <li><a href="https://linkedin.com/in/rayzansein">LinkedIn</a></li>
+      <li><a href="https://github.com/rayzansein">GitHub</a></li>
+      <li><a href="https://youtube.com/@rayzansein">YouTube</a></li>
+      <li><a href="https://instagram.com/rayzansein">Instagram</a></li>
+      <li><a href="https://threads.net/@rayzansein">Threads</a></li>
+      <li><a href="https://x.com/rayzansein">X</a></li>
+      <li><a href="https://tiktok.com/@rayzansein">TikTok</a></li>
+      <li><a href="https://reddit.com/user/rayzansein">Reddit</a></li>
+      <li><a href="https://strava.com/athletes/rayzansein">Strava</a></li>
+      <li><a href="https://letterboxd.com/rayzansein">Letterboxd</a></li>
+      <li><a href="/blog/feed.xml">RSS Feed</a></li>
+    </ul>
+  </footer>
 </body>
 </html>

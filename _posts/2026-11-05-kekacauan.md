@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Kekacauan
 date: 2026-11-05 01:27:22 +0000
 ---
